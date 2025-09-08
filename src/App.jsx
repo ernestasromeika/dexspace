@@ -1,61 +1,49 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import "./styles.scss";
 
-// 🔹 1inch widget component
-function OneInchWidget() {
+import Header from "./components/Header.jsx";
+import Footer from "./components/Footer.jsx";
+
+import Home from "./pages/Home.jsx";
+import FindGems from "./pages/FindGems.jsx";
+import Swap from "./pages/Swap.jsx"; // renamed
+import About from "./pages/About.jsx";
+
+function App() {
+  const [theme, setTheme] = useState("dark");
+
+  // Load saved theme from localStorage on first mount
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://cdn.jsdelivr.net/npm/@1inch/limit-order-widget@latest/dist/limit-order-widget.js";
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
+    const saved = localStorage.getItem("theme");
+    if (saved) {
+      setTheme(saved);
+    }
   }, []);
 
+  // Save theme whenever it changes
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
   return (
-    <div className="dex-widget">
-      <h2>1inch Swap</h2>
-      <div
-        className="oneinch-widget"
-        style={{ width: "100%", height: "600px" }}
-        data-chain="1"
-        data-from-token="ETH"
-        data-to-token="DAI"
-      ></div>
+    <div className={`app ${theme}`}>
+      <Header theme={theme} toggleTheme={toggleTheme} />
+      <main className="main">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/find-gems" element={<FindGems />} />
+          <Route path="/swap" element={<Swap />} /> {/* moved */}
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </main>
+      <Footer />
     </div>
   );
 }
 
-// 🔹 Uniswap iframe component
-function UniswapIframe() {
-  return (
-    <div className="dex-widget">
-      <h2>Uniswap Swap</h2>
-      <iframe
-        src="https://app.uniswap.org/#/swap?chain=mainnet&theme=dark"
-        title="Uniswap"
-        style={{
-          border: "none",
-          borderRadius: "12px",
-          width: "100%",
-          height: "600px",
-        }}
-      ></iframe>
-    </div>
-  );
-}
-//https://rango.exchange/?tokenIn=ETH&tokenOut=USDT&amount=1&from=ethereum&to=polygon
-
-// 🔹 Main App
-export default function App() {
-  return (
-    <div className="app">
-      <div className="container">
-        <h1>DEXSpace – Swap Portal</h1>
-        {/* <OneInchWidget /> */}
-        <UniswapIframe />
-      </div>
-    </div>
-  );
-}
+export default App;
