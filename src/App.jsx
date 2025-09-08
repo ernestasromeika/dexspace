@@ -5,10 +5,10 @@ import "./styles.scss";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 
-import Home from "./Pages2/Home.jsx";
-import FindGems from "./Pages2/FindGems.jsx";
-import Swap from "./Pages2/Swap.jsx";
-import About from "./Pages2/About.jsx";
+import Home from "./pages/Home.jsx";
+import FindGems from "./pages/FindGems.jsx";
+import Swap from "./pages/Swap.jsx";
+import About from "./pages/About.jsx";
 
 function App() {
   const [theme, setTheme] = useState("dark");
