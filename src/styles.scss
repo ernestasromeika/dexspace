@@ -17,6 +17,8 @@ $light-text: #1f2937;
 $light-muted: #4b5563;
 $light-border: #e5e7eb;
 
+$white: #dddddd;
+
 /* Global layout */
 body {
   font-family: "Inter", sans-serif;
@@ -34,6 +36,9 @@ body {
   background: $dark-bg;
   color: $dark-text;
 
+  .nav.open {
+    background: #1b233f;
+  }
   .header,
   .footer {
     background: $dark-surface;
@@ -65,7 +70,7 @@ body {
 
     &.active {
       background: $app-purple;
-      color: white;
+      color: $white;
     }
   }
 
@@ -82,6 +87,10 @@ body {
   background: $light-bg;
   color: $light-text;
 
+  .nav.open {
+    background:$white;
+  }
+  
   .header,
   .footer {
     background: $light-surface;
@@ -100,7 +109,7 @@ body {
 
   .toggle-btn {
     border: 1px solid $app-purple;
-    background: white;
+    background: $white;
     color: $app-purple;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
@@ -112,7 +121,7 @@ body {
 
     &.active {
       background: $app-purple;
-      color: white;
+      color: $white;
     }
   }
 
@@ -184,7 +193,7 @@ body {
 }
 
 .app.dark .nav-btn {
-  background: #1e293b;
+  background: #2a3a53;
   color: #e2e8f0;
 
   &:hover {
@@ -194,11 +203,12 @@ body {
 
   &.active {
     background: #9333ea;
-    color: white;
+    color: $white;
   }
 }
 
 .app.light .nav-btn {
+  
   background: #f3f4f6;
   color: #1f2937;
   border: 1px solid #e5e7eb;
@@ -209,7 +219,7 @@ body {
 
   &.active {
     background: #9333ea;
-    color: white;
+    color: $white;
     border-color: #9333ea;
   }
 }
@@ -250,17 +260,17 @@ body {
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
+  background-color: $white;
   -webkit-transition: .4s;
   transition: .4s;
 }
 
 input:checked+.slider {
-  background-color: #2196F3;
+  background-color: #866ab8;
 }
 
 input:focus+.slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #866ab8;
 }
 
 input:checked+.slider:before {
@@ -302,4 +312,71 @@ input:checked+.slider:before {
   font-size: 2rem;
   font-weight: 700;
   margin-top: 0.5rem;
+}
+
+
+/* Header layout */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: var(--header-bg);
+  position: relative;
+}
+
+.nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-btn {
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--text-color);
+  background: var(--btn-bg);
+  transition: background 0.2s ease;
+}
+
+.nav-btn:hover {
+  background: var(--btn-hover);
+}
+
+.nav-btn.active {
+  background: var(--btn-active);
+  color: var(--btn-active-text);
+}
+
+/* Hamburger button (hidden on desktop) */
+.hamburger {
+  display: none;
+  font-size: 1.6rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: var(--header-bg);
+    padding: 1rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
 }

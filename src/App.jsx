@@ -37,7 +37,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/find-gems" element={<FindGems />} />
-          <Route path="/swap" element={<Swap />} /> {/* moved */}
+          <Route path="/swap" element={<Swap />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </main>
