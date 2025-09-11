@@ -27,7 +27,7 @@ app.get("/api/fear-greed", async (req, res) => {
 
 app.get("/api/gemini", async (req, res) => {
     try {
-        const API_KEY = "AIzaSyBU4uBy1tKTfszAhB-uhN5BR7dgD2s_L7A";
+        const API_KEY = process.env.GEMINI_API_KEY;
         if (!API_KEY) {
             throw new Error('API_KEY is not configured. Please set the API_KEY environment variable.');
         }
