@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import "./styles.scss";
+import "./styles/styles.scss";
 
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
@@ -9,6 +9,7 @@ import Home from "./pages/Home.jsx";
 import FindGems from "./pages/FindGems.jsx";
 import Swap from "./pages/Swap.jsx";
 import About from "./pages/About.jsx";
+import Gemini from "./pages/Gemini.jsx";
 
 function App() {
   const [theme, setTheme] = useState("dark");
